@@ -18,6 +18,9 @@ snap install microk8s --classic
 echo "Starting microk8s"
 microk8s status --wait-ready
 microk8s enable dns
+usermod -a -G microk8s ubuntu
+chown -R ubuntu ~/.kube
+newgrp microk8s
 
 # Create a folder
 su ubuntu -c '
