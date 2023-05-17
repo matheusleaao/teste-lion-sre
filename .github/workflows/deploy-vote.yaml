@@ -1,0 +1,24 @@
+name: Deploy-Vote
+on:
+  push:
+    branches:
+      - master
+      
+jobs:
+  build:
+    name: build
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+            
+  deploy:
+    name: deploy
+    runs-on: self-hosted
+    steps:
+      - shell: bash
+        run: |
+          whoami
