@@ -9,11 +9,11 @@ variable "aws_profile" {
 }
 
 variable "bucket_name" {
-  default = "lion-s3-backend"
+  default = "test-case-matheus-leao"
   type    = string
 }
 
 variable "dynamodb_table" {
-  default = "lion-s3-backend_terraform_state_lock"
+  default = "test-case-matheus-leao_terraform_state_lock"
   type    = string
 }

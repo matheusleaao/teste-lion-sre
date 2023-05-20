@@ -2,6 +2,13 @@ provider "aws" {
   region                  = var.aws_region
   shared_credentials_file = "~/.aws/credentials"
   profile                 = var.aws_profile
+  default_tags {
+    tags = {
+      Environment = "${terraform.workspace}"
+      ManagedByTerraform   = "true"
+      TEST-CASE = "matheus.leao"
+      }
+  }
 }
 
 

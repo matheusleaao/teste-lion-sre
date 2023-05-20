@@ -5,11 +5,11 @@
 terraform {
   required_version = ">= 0.12.18"
   backend "s3" {
-    bucket                  = "lion-s3-backend"
+    bucket                  = "TEST-CASE-matheus-leao"
     key                     = "dev/ec2/terraform.tfstate.d/terraform.tfstate"
     region                  = "us-east-1"
     encrypt                 = true
-    dynamodb_table          = "lion-s3-backend_terraform_state_lock"
+    dynamodb_table          = "TEST-CASE-matheus-leao_terraform_state_lock"
     shared_credentials_file = "~/.aws/credentials"
     profile                 = "user-teste-sre"
   }
@@ -24,6 +24,7 @@ provider "aws" {
     tags = {
       Environment = "${terraform.workspace}"
       ManagedByTerraform   = "true"
+      TEST-CASE = "matheus.leao"
       }
   }
 }
