@@ -22,7 +22,7 @@ jobs:
 
   deploy-vote:
     name: deploy-vote
-    needs: build
+    needs: build-vote
     runs-on: self-hosted
     steps:
       - name: Deploy to k8s
