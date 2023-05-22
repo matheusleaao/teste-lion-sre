@@ -5,6 +5,13 @@ on:
       - master
       
 jobs:
+  ECR-auth:
+    name: ECR-auth
+    runs-on: self-hosted
+    steps:
+      - name: Auth AWS ECR
+        run: aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 939558840714.dkr.ecr.us-east-1.amazonaws.com
+
   Clone-to-ubuntu:
     name: Clone repo on ubuntu
     runs-on: self-hosted
@@ -14,11 +21,17 @@ jobs:
 
   build-vote:
     name: build-vote
-    needs: Clone-to-ubuntu
+    needs:
+      - Clone-to-ubuntu
+      - ECR-auth
     runs-on: self-hosted
     steps:
       - name: Create Docker Image
-        run: whoami && cd ~/app/voting-app/vote/ && sudo docker build -t vote-app/vote:${{ github.sha }} .
+        run: whoami && cd ~/app/voting-app/vote/ && sudo docker build -t matheus.leao-vote-ecr-dev/vote:latest .
+      - name: Tag image
+        run: docker tag matheus.leao-vote-ecr-dev:lastest 939558840714.dkr.ecr.us-east-1.amazonaws.com/matheus.leao-vote-ecr-dev:${{ github.sha }}
+      - name: Pull image
+        run: docker push 939558840714.dkr.ecr.us-east-1.amazonaws.com/matheus.leao-vote-ecr-dev:${{ github.sha }}
 
   deploy-vote:
     name: deploy-vote

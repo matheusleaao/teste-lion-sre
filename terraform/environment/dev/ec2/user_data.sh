@@ -11,6 +11,7 @@ curl -fsSl https://get.docker.com/ | sh
 groupadd docker
 usermod -aG docker ubuntu
 newgrp docker
+apt install awscli -y
 
 echo "Config amazon-ssm"
 snap install amazon-ssm-agent --classic
