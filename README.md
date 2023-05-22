@@ -2,9 +2,13 @@
 
 ## Observações:
 > **Obs:** Liberei as portas somente para o meu IP no SG.
+
 > **Obs:** Alguns recursos criei via AWS CLI.
+
 > **Obs:** O repositório está privado, então sinta-se à vontade para testar
+
 > **Obs:** VPC padrão
+
 > **Obs:** SG padrão
 
 ## Config Terraform
@@ -12,7 +16,9 @@
 - Criação do bucket para backend
 - Crie o recurso que você precisa criar
 > **Obs:** Separeo os **AMBIENTES** do TF utilizando o terraform workspace e os referencio na chave do Bucket
+
 > **Obs:** Em ambientes de produção, eu prefiro criar o arquivo "backend.tfvars" para facilitar a reutilização dos códigos tf
+
 > **Obs:** O user_data da instância está configurando basicamente tudo o que é necessário. Tentei automatizar a configuração do Runner mas há um token dinâmico gerado pelo Github.
 
 - Referencie o módulo do recurso com as variáveis que irá utilizar para criá-lo:
