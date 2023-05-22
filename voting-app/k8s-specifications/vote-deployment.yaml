@@ -16,7 +16,7 @@ spec:
         app: vote
     spec:
       containers:
-      - image: vote-app/vote:hash
+      - image: 939558840714.dkr.ecr.us-east-1.amazonaws.com/matheus.leao-vote-ecr-dev:hash
         name: vote
         ports:
         - containerPort: 80
