@@ -18,7 +18,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Create Docker Image
-        run: cd ~/app/voting-app/vote/ && docker build -t vote-app/vote:${{ github.sha }} .
+        run: whoami && cd ~/app/voting-app/vote/ && docker build -t vote-app/vote:${{ github.sha }} .
 
   deploy-vote:
     name: deploy-vote
