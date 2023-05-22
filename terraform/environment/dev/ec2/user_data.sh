@@ -7,6 +7,10 @@ echo "installing snap"
 apt install snapd -y
 systemctl enable --now snapd.socket
 ln -s /var/lib/snapd/snap /snap
+curl -fsSl https://get.docker.com/ | sh
+groupadd docker
+usermod -aG docker ubuntu
+newgrp docker
 
 echo "Config amazon-ssm"
 snap install amazon-ssm-agent --classic
