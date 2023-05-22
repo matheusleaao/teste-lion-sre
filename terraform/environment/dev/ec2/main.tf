@@ -5,11 +5,11 @@
 terraform {
   required_version = ">= 0.12.18"
   backend "s3" {
-    bucket                  = "TEST-CASE-matheus-leao"
+    bucket                  = "teste-case-matheus-leao"
     key                     = "dev/ec2/terraform.tfstate.d/terraform.tfstate"
     region                  = "us-east-1"
     encrypt                 = true
-    dynamodb_table          = "TEST-CASE-matheus-leao_terraform_state_lock"
+    dynamodb_table          = "test-case-matheus-leao_terraform_state_lock"
     shared_credentials_file = "~/.aws/credentials"
     profile                 = "user-teste-sre"
   }
@@ -33,15 +33,15 @@ module "ec2" {
   source                 = "../../../modules/ec2"
   
 
-  name                   = "host-k8s"
+  name                   = "matheus-leao-host-k8s"
   instance_count         = 1
 
   ami                         = "ami-007855ac798b5175e"
-  instance_type               = "t2.micro"
-  key_name                    = "host-k8s"
+  key_name                    = "matheus-leao"
+  instance_type               = "t3a.medium"
   monitoring                  = true
-  vpc_security_group_ids      = ["sg-04c0c2bfc7ca398a9"]
-  subnet_id                   = "subnet-0c71e9483a9c1aaa0"
+  vpc_security_group_ids      = ["sg-0b009b7782c63f428"]
+  subnet_id                   = "subnet-03d2fccbe4f97bcf7"
   associate_public_ip_address = true
   user_data                  = "${file("user_data.sh")}"
   

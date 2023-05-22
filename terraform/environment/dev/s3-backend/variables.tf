@@ -9,7 +9,7 @@ variable "aws_profile" {
 }
 
 variable "bucket_name" {
-  default = "test-case-matheus-leao"
+  default = "teste-case-matheus-leao"
   type    = string
 }
 

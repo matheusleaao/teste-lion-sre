@@ -18,7 +18,7 @@ resource "aws_instance" "ec2" {
   get_password_data      = var.get_password_data
   vpc_security_group_ids = var.vpc_security_group_ids
   //iam_instance_profile   = var.iam_instance_profile
-  iam_instance_profile = data.aws_iam_instance_profile.being_used.name
+  #iam_instance_profile = data.aws_iam_instance_profile.being_used.name
 
 
   associate_public_ip_address = var.associate_public_ip_address
@@ -98,46 +98,46 @@ resource "aws_instance" "ec2" {
 }
 
 # Select user specified instance profile or the default one created (see below)
-data "aws_iam_instance_profile" "being_used" {
-  name = "${var.iam_instance_profile != "" ? var.iam_instance_profile : join("", aws_iam_instance_profile.default.*.id)}"
-}
+#data "aws_iam_instance_profile" "being_used" {
+#  name = "${var.iam_instance_profile != "" ? var.iam_instance_profile : join("", aws_iam_instance_profile.default.*.id)}"
+#}
 
 # ----------------------------------------------------------------------------------------------------------------------
 # IAM
 # ----------------------------------------------------------------------------------------------------------------------
 
 # Default instance profile, role and policy document if instance profile is not specified
-resource "aws_iam_instance_profile" "default" {
-  count = var.iam_instance_profile != "" ? 0 : 1
+#resource "aws_iam_instance_profile" "default" {
+#  count = var.iam_instance_profile != "" ? 0 : 1
+#
+#  role = aws_iam_role.default[count.index].name
+#} 
 
-  role = aws_iam_role.default[count.index].name
-} 
+#resource "aws_iam_role" "default" {
+#  count = var.iam_instance_profile != "" ? 0 : 1
+#
+#  assume_role_policy = data.aws_iam_policy_document.allow_ec2_to_assume_role.json
+#}
 
-resource "aws_iam_role" "default" {
-  count = var.iam_instance_profile != "" ? 0 : 1
-
-  assume_role_policy = data.aws_iam_policy_document.allow_ec2_to_assume_role.json
-}
-
-data "aws_iam_policy_document" "allow_ec2_to_assume_role" {
-  statement {
-    actions = ["sts:AssumeRole"]
-
-    principals {
-      type        = "Service"
-      identifiers = ["ec2.amazonaws.com"]
-    }
-  }
-}
+#data "aws_iam_policy_document" "allow_ec2_to_assume_role" {
+#  statement {
+#    actions = ["sts:AssumeRole"]
+#
+#    principals {
+#      type        = "Service"
+#      identifiers = ["ec2.amazonaws.com"]
+#    }
+#  }
+#}
 
 # ----------------------------------------------------------------------------------------------------------------------
 # SSM ACCESS
 # ----------------------------------------------------------------------------------------------------------------------
 
 # Attaches default Amazon policy for SSM
-resource "aws_iam_role_policy_attachment" "ssm_policy" {
-  count = var.enable_ssm ? 1 : 0
-
-  role       = data.aws_iam_instance_profile.being_used.role_name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
-}
+#resource "aws_iam_role_policy_attachment" "ssm_policy" {
+#  count = var.enable_ssm ? 1 : 0
+#
+#  role       = data.aws_iam_instance_profile.being_used.role_name
+#  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
+#}

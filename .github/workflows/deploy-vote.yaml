@@ -20,4 +20,4 @@ jobs:
     steps:
       - shell: bash
         run: |
-          whoami
+          cd /app && git pull
