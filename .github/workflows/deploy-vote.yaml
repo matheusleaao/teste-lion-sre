@@ -11,3 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: cp -rf ./voting-app ~/app
+
+  build:
+    name: build
+    runs-on: self-hosted
+    env:
+      working-directory: ~/app
+    steps:
+      - name: Deploy to k8s
+        working-directory: $({env.working-directory}}
+        run: pwd && ls k8s-specifications/ #microk8s kubectl create -f k8s-specifications/
