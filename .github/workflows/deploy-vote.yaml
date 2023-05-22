@@ -29,7 +29,7 @@ jobs:
       - name: Create Docker Image
         run: whoami && cd ~/app/voting-app/vote/ && sudo docker build -t matheus.leao-vote-ecr-dev/vote:latest .
       - name: Tag image
-        run: sudo docker tag matheus.leao-vote-ecr-dev/vote:lastest 939558840714.dkr.ecr.us-east-1.amazonaws.com/matheus.leao-vote-ecr-dev:${{ github.sha }}
+        run: sudo docker tag matheus.leao-vote-ecr-dev/vote:latest 939558840714.dkr.ecr.us-east-1.amazonaws.com/matheus.leao-vote-ecr-dev:${{ github.sha }}
       - name: Pull image
         run: sudo docker push 939558840714.dkr.ecr.us-east-1.amazonaws.com/matheus.leao-vote-ecr-dev:${{ github.sha }}
 
