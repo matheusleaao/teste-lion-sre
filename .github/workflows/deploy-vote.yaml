@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: cp -rf /home/runner/work/teste-lion-sre/teste-lion-sre/example-voting-app /app
+      - run: cp -rf /home/runner/work/teste-lion-sre/teste-lion-sre/example-voting-app /home/ubuntu/app
