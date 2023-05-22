@@ -5,19 +5,9 @@ on:
       - master
       
 jobs:
-  build:
-    name: build
-    runs-on: self-hosted
+  Clone-to-ubuntu:
+    name: Clone repo on ubuntu
+    runs-on: ubuntu-latest
     steps:
-      - shell: bash
-        run: |
-          echo "buildando app"
-            
-  deploy:
-    name: deploy
-    needs: build
-    runs-on: self-hosted
-    steps:
-      - shell: bash
-        run: |
-          cd /app && git pull
+      - uses: actions/checkout@v3
+      - run: pwd && ls
