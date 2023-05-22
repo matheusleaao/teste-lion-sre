@@ -25,5 +25,7 @@ jobs:
     needs: build-vote
     runs-on: self-hosted
     steps:
+      - name: Replace Docker Image
+        run: cd ~/app && sed -i 's/hash/${{ github.sha }}/g' ./voting-app/k8s-specifications/vote-deployment.yaml
       - name: Deploy to k8s
         run: cd ~/app && microk8s kubectl apply -f ./voting-app/k8s-specifications/vote-deployment.yaml
