@@ -15,8 +15,11 @@ spec:
       labels:
         app: vote
     spec:
+      imagePullSecrets:
+      - name: registry-key
       containers:
       - image: 939558840714.dkr.ecr.us-east-1.amazonaws.com/matheus.leao-vote-ecr-dev:hash
+        imagePullPolicy: Always
         name: vote
         ports:
         - containerPort: 80
