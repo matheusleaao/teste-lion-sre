@@ -10,7 +10,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Auth AWS ECR
-        run: aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 939558840714.dkr.ecr.us-east-1.amazonaws.com
+        run: aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 939558840714.dkr.ecr.us-east-1.amazonaws.com
 
   Clone-to-ubuntu:
     name: Clone repo on ubuntu
